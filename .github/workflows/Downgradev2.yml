@@ -1,12 +1,8 @@
 name: Downgradev2
 
 on:
-  pull_request:
-    branches:
-      - main
   push:
-    branches:
-      - main
+  pull_request:
   workflow_dispatch:
 
 jobs:
