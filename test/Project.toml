@@ -4,7 +4,7 @@ DowngradeTestPackage = "598b003f-0677-49cf-8d2a-39b1658b755a"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [compat]
-Compat = "3"  # v4.18.1 is the latest
+Compat = "3, 4"
 
 [sources.DowngradeTestPackage]
 path=".."
