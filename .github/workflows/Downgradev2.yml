@@ -23,7 +23,7 @@ jobs:
         id: setup-julia
         with:
           version: ${{ matrix.version }}
-      - uses: julia-actions/julia-downgrade-compat@main
+      - uses: ChrisRackauckas-Claude/julia-downgrade-compat@e104f36617b8f9857e76e7e79caf0e5dcd2c3af5
         with:
           projects: ${{ matrix.downgrade_projects }}
           skip: Test,DowngradeTestPackage
