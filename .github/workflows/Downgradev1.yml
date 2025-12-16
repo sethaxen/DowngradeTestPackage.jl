@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: ['1.10', '1.11', '1', 'pre']
+        version: ['1', 'pre']
         os: ['ubuntu-latest']
         downgrade_projects: ['.', '.,test']
         strict_mode: [true, false, 'v0']
