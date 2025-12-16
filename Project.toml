@@ -1,0 +1,7 @@
+name = "DowngradeTestPackage"
+uuid = "598b003f-0677-49cf-8d2a-39b1658b755a"
+version = "0.1.0"
+authors = ["Seth Axen <seth@sethaxen.com>"]
+
+[workspace]
+projects = ["test"]
