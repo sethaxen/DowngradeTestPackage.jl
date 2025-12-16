@@ -11,7 +11,7 @@ on:
 
 jobs:
   test:
-    name: 'Downgrade v2 / Julia ${{ matrix.version }} - ${{ matrix.os }} - ${{ github.event_name }}'
+    name: 'Downgrade v2 / Julia ${{ matrix.version }} - projects: ${{ matrix.downgrade_projects }} - mode: ${{ matrix.downgrade_mode }} - build project: ${{ matrix.build_project }}'
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -32,6 +32,7 @@ jobs:
           projects: ${{ matrix.downgrade_projects }}
           skip: Test,DowngradeTestPackage
           julia_version: ${{ steps['setup-julia'].outputs.julia-version }}
+          mode: ${{ matrix.downgrade_mode }}
       - uses: julia-actions/julia-buildpkg@v1
         with:
           project: ${{ matrix.build_project }}

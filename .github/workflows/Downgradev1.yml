@@ -1,4 +1,4 @@
-name: Downgradev2
+name: Downgradev1
 
 on:
   pull_request:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   test:
-    name: 'Downgrade v1 / Julia ${{ matrix.version }} - ${{ matrix.os }} - ${{ github.event_name }}'
+    name: 'Downgrade v1 / Julia ${{ matrix.version }} - projects: ${{ matrix.downgrade_projects }} - strict: ${{ matrix.strict_mode }} - build project: ${{ matrix.build_project }}'
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
