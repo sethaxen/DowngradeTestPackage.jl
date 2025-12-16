@@ -29,6 +29,11 @@ jobs:
           skip: Test,DowngradeTestPackage
           julia_version: ${{ steps['setup-julia'].outputs.julia-version }}
           mode: ${{ matrix.downgrade_mode }}
+      - name: Resolve main environment
+        shell: julia --project=. --color=yes {0}
+        run: |
+          using Pkg
+          VERSION >= v"1.12" && Pkg.resolve()
       - uses: julia-actions/julia-buildpkg@v1
         with:
           project: ${{ matrix.build_project }}
