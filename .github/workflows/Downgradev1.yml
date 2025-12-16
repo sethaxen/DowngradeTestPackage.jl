@@ -1,0 +1,41 @@
+name: Downgradev2
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: 'Downgrade v1 / Julia ${{ matrix.version }} - ${{ matrix.os }} - ${{ github.event_name }}'
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ['1.10', '1.11', '1', 'pre']
+        os: ['ubuntu-latest']
+        downgrade_projects: ['.', '.,test']
+        strict_mode: [true, false, 'v0']
+        build_project: ['.', 'test']
+    steps:
+      - uses: actions/checkout@v6
+      - uses: julia-actions/setup-julia@v2
+        id: setup-julia
+        with:
+          version: ${{ matrix.version }}
+      - uses: julia-actions/julia-downgrade-compat@v1
+        with:
+          projects: ${{ matrix.downgrade_projects }}
+          skip: Test,DowngradeTestPackage
+          strict: ${{ matrix.strict_mode }}
+      - uses: julia-actions/julia-buildpkg@v1
+        with:
+          project: ${{ matrix.build_project }}
+      - uses: julia-actions/julia-runtest@v1
+        with:
+          allow_reresolve: false
+          force_latest_compatible_version: false
